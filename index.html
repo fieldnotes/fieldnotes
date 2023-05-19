@@ -11,41 +11,43 @@
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             if (document.getElementById(elmnt.id + "-header")) {
-                document.getElementById(elmnt.id + "-header").onmousedown = dragMouseDown;
+                document.getElementById(elmnt.id + "-header").ontouchstart = dragTouchStart;
             } else {
-                elmnt.onmousedown = dragMouseDown;
+                elmnt.ontouchstart = dragTouchStart;
             }
 
-            function dragMouseDown(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
+            function dragTouchStart(e) {
+                if (e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                    document.ontouchend = closeDragElement;
+                    document.ontouchmove = elementDrag;
+                }
             }
 
             function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                if (e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos1 = pos3 - touch.clientX;
+                    pos2 = pos4 - touch.clientY;
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
             }
 
             function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
             }
         }
     </script>
 </head>
 <body>
-    <img id="image1" class="draggable" src="Assets/path_to_image1.jpg" style="top: 100px; left: 100px;" width="200" height="200" onmousedown="dragElement(this)">
-    <img id="image2" class="draggable" src="Assets/path_to_image2.jpg" style="top: 300px; left: 300px;" width="200" height="200" onmousedown="dragElement(this)">
+    <img id="image1" class="draggable" src="Assets/path_to_image1.jpg" style="top: 100px; left: 100px;" width="200" height="200" ontouchstart="dragElement(this)">
+    <img id="image2" class="draggable" src="Assets/path_to_image2.jpg" style="top: 300px; left: 300px;" width="200" height="200" ontouchstart="dragElement(this)">
     <!-- Add more images as needed -->
 
     <script>
@@ -57,4 +59,3 @@
     </script>
 </body>
 </html>
-
