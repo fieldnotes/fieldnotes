@@ -25,6 +25,8 @@ body {
  .container{
   width: 100%;
   height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
  }
 
  .slides{
@@ -35,6 +37,7 @@ body {
   justify-content: center;
   gap: 50px;
   color: white;
+  scroll-snap-align: start;
  }
 
  .slides img{
@@ -48,19 +51,19 @@ body {
 <div id="header">fieldnotes</div>
 <div class="container">
 
- <div class="slides">
+ <div class="slides slide1">
   <img src="Assets/150dor.png">
     <img src="Assets/150dor2.png">
     <img src="Assets/150dor3.png">
  </div>
 
- <div class="slides">
+ <div class="slides slide2">
   <img src="Assets/dolly.png">
     <img src="Assets/dolly2.png">
     <img src="Assets/dolly3.png">
  </div>
 
- <div class="slides">
+ <div class="slides slide3">
   <img src="Assets/2020.png">
     <img src="Assets/2.png">
     <img src="Assets/3.png">
