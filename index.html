@@ -1,105 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fieldnotes</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { 
+ background-color: black;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: yellow;
+}
 
-        /* Define a container for the pages */
-        .pages-container {
-            display: flex;
-            width: 100vw;
-            overflow-x: hidden;
-        }
-
-        /* Style for individual pages */
-        .page {
-            min-height: 100vh;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Style for the transparent menu bar on the right */
-        .menu-bar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 80px;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            padding: 20px 0;
-        }
-
-        /* Style for menu items */
-        .menu-item {
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            padding: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Change background color on hover */
-        .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+#header {
+  
+  color: white;
+  text-align: left;
+  font-size: 90px; 
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: 0.2s;
+}
+</style>
 </head>
 <body>
-    <!-- Menu Bar -->
-    <div class="menu-bar">
-        <a href="#section1" class="menu-item">150 days of rice</a>
-        <a href="#section2" class="menu-item">Dolly</a>
-        <a href="#section3" class="menu-item">2020</a>
-        <!-- Add more menu items as needed -->
-    </div>
 
-    <!-- Pages Container -->
-    <div class="pages-container">
-        <!-- Page 1 -->
-        <div id="section1" class="page">
-            <h1>!50 days of rice</h1>
-            <!-- Content for Section 1 -->
-        </div>
+<div id="header">Header</div>
 
-        <!-- Page 2 -->
-        <div id="section2" class="page">
-            <h1>Dolly</h1>
-            <!-- Content for Section 2 -->
-        </div>
+<div style="margin-top:200px;padding:15px 15px 2500px;font-size:30px">
+  <img src="assets/150dor.png" alt="rice">
+ <img src="assets/150dor2.png" alt="rice">
+     <img src="assets/150dor3.png" alt="rice">
+<script>
+// When the user scrolls down 50px from the top of the document, resize the header's font size
+window.onscroll = function() {scrollFunction()};
 
-        <!-- Page 3 -->
-        <div id="section3" class="page">
-            <h1>2020</h1>
-            <!-- Content for Section 3 -->
-        </div>
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    document.getElementById("header").style.fontSize = "30px";
+  } else {
+    document.getElementById("header").style.fontSize = "90px";
+  }
+}
+</script>
 
-        <!-- Add more pages as needed -->
-    </div>
-
-    <!-- Add your JavaScript for smooth scrolling if desired -->
-    <script>
-        document.querySelectorAll('.menu-item').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
